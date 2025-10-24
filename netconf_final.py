@@ -44,7 +44,9 @@ def delete(student_id, router_ip, roomIdToGetMessages, ACCESS_TOKEN):
     <config>
         <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
             <interface>
-                <name>{student_id}</name>
+                <Loopback operation="delete">
+                    <name>{student_id}</name>
+                </Loopback>
             </interface>
         </native>
     </config>

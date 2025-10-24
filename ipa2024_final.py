@@ -86,7 +86,7 @@ while True:
             # เรียกฟังก์ชันตาม command
             if command == "showrun":
                 responseMessage, ansible_output = ansible_final.showrun(router_ip, student_id)
-                if responseMessage == "fuck":
+                if responseMessage == "another":
                     # ถ้า responseMessage เป็น "fuck" จะไม่ทำอะไร (หรือจะแสดงข้อความเฉพาะก็ได้)
                     print("Response is 'fuck' — ไม่ส่งไฟล์ไป Webex")
                     
