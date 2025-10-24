@@ -2,7 +2,7 @@
 PLAY [Get running config from router] ******************************************
 
 TASK [Show running config] *****************************************************
-fatal: [10.0.15.63]: FAILED! => {"changed": false, "msg": "paramiko: The authenticity of host '10.0.15.63' can't be established.\nThe ssh-rsa key fingerprint is b'5f1e39b571b404b9df7ad3bd3cf7d41b'."}
+fatal: [10.0.15.63]: FAILED! => {"changed": false, "msg": "Failed to authenticate: Authentication failed: transport shut down or saw EOF"}
 
 PLAY RECAP *********************************************************************
 10.0.15.63                 : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   

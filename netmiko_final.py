@@ -6,7 +6,7 @@ username = "admin"
 password = "cisco"
 
 device_params = {
-    "device_type": "cisco_ios",  # IOS XE ใช้ cisco_ios
+    "device_type": "cisco_ios", 
     "ip": device_ip,
     "username": username,
     "password": password,

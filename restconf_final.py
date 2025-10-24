@@ -78,7 +78,7 @@ def create(student_id, router_ip, room_id, access_token):
 
     # ส่งผลลัพธ์กลับ Webex
     if response.status_code in [200, 201]:
-        text_to_send = f"Interface loopback {student_id} is created successfully"
+        text_to_send = f"Interface loopback {student_id} is created successfully by restconf"
     else:
         text_to_send = f"Cannot create: Interface loopback {student_id}"
 
@@ -133,7 +133,7 @@ def delete(student_id, router_ip, room_id, access_token):
     response = requests.delete(url_delete, headers=headers, verify=False)
 
     if response.status_code in [200, 204]:
-        text_to_send = f"Interface loopback {student_id} is deleted successfully"
+        text_to_send = f"Interface loopback {student_id} is deleted successfully by restconf"
     else:
         text_to_send = f"Cannot delete: Interface loopback {student_id}"
 
@@ -190,7 +190,7 @@ def enable(student_id, router_ip, room_id, access_token):
     response = requests.patch(url_patch, headers=headers, json=payload, verify=False)
 
     if response.status_code in [200, 204]:
-        text_to_send = f"Interface loopback {student_id} is enable successfully"
+        text_to_send = f"Interface loopback {student_id} is enable successfully by restconf"
     else:
         text_to_send = f"Cannot enable: Interface loopback {student_id}"
 
@@ -228,7 +228,7 @@ def disable(student_id, router_ip, room_id, access_token):
             payload = {"ietf-interfaces:interface": {"enabled": False}}
             resp = requests.patch(url_patch, headers=headers, json=payload, verify=False)
             if resp.status_code in [200, 204]:
-                text_to_send = f"Interface loopback {student_id} is shutdowned successfully"
+                text_to_send = f"Interface loopback {student_id} is shutdowned successfully by restconf"
             else:
                 text_to_send = f"Cannot shutdown: Interface loopback {student_id}"
     except Exception as e:
@@ -264,9 +264,9 @@ def status(student_id, router_ip, room_id, access_token):
             admin_status = matched_intf.get("enabled")
             print(admin_status)
             if admin_status == True:
-                text_to_send = f"Interface {interface_name} is enabled"
+                text_to_send = f"Interface {interface_name} is enabled by restconf"
             elif admin_status == False:
-                text_to_send = f"Interface {interface_name} is disabled"
+                text_to_send = f"Interface {interface_name} is disabled by restconf"
             else:
                 text_to_send = f"Interface {interface_name} status unknown"
 

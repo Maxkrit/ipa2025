@@ -1,7 +1,7 @@
 #######################################################################################
-# Yourname:
-# Your student ID:
-# Your GitHub Repo: 
+# Yourname: กฤษดา เอนกธนกุล
+# Your student ID: 66070007
+# Your GitHub Repo: https://github.com/Maxkrit/ipa2025.git
 
 #######################################################################################
 # 1. Import libraries for API requests, JSON formatting, time, os, (restconf_final or netconf_final), netmiko_final, and ansible_final.
@@ -17,7 +17,7 @@ import restconf_final
 import netconf_final
 import netmiko_final
 import sendtexttowebex
-
+# import motd_command
 #######################################################################################
 # 2. Assign the Webex accesssetx WEBEX_TOKEN "OGFmNzY3MjMtMzM5OS00MTYwLThkM2QtYTBmN2EzZGQ4YmQ1YTA1YWFkNzktMDRh_PS65_e37c9b35-5d15-4275-8997-b5c6f91a842d"
 
@@ -87,8 +87,7 @@ while True:
             if command == "showrun":
                 responseMessage, ansible_output = ansible_final.showrun(router_ip, student_id)
                 if responseMessage == "another":
-                    # ถ้า responseMessage เป็น "fuck" จะไม่ทำอะไร (หรือจะแสดงข้อความเฉพาะก็ได้)
-                    print("Response is 'fuck' — ไม่ส่งไฟล์ไป Webex")
+                    print("Response is 'another' — ไม่ส่งไฟล์ไป Webex")
                     
                 else:
                     # เขียนผลลัพธ์ลงไฟล์ใหม่
@@ -150,7 +149,7 @@ while True:
                 else:
                     print("Failed to send message:", response.text)
                 continue
-    if len(parts) == 2:
+    if len(parts) == 2 and parts[1] != "showrun":
         system = student_system.get(student_id)
         if system == "restconf" or system == "netconf":
             if parts[1] not in ["10.0.15.61", "10.0.15.62", "10.0.15.63", "10.0.15.64", "10.0.15.65"]:
