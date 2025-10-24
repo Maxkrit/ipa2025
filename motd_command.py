@@ -2,8 +2,13 @@ import os
 import sys
 from netmiko import ConnectHandler
 import textfsm
+import io
 
 # ตรวจสอบ argument
+if len(sys.argv) < 2:
+    print("Error: No command provided")
+    sys.exit(1)
+
 parts = sys.argv[1].split()
 
 if len(parts) < 3:
@@ -22,7 +27,7 @@ if command_type == "motd":
 
         # เขียน hosts ไฟล์ชั่วคราว
         with open("hosts", "w") as f:
-            f.write(f"{host}\n")
+            f.write(f"{host} ansible_user=admin ansible_password=cisco ansible_network_os=cisco.ios.ios\n")
 
         # รัน playbook ตั้งค่า MOTD
         os.system(
@@ -38,7 +43,8 @@ if command_type == "motd":
             "device_type": "cisco_ios",
             "ip": host,
             "username": "admin",
-            "password": "cisco",
+            "password": "cisco"
+
         }
 
         try:
@@ -47,11 +53,11 @@ if command_type == "motd":
             net_connect.disconnect()
 
             # ใช้ TextFSM parse ข้อความ
-            template = """Value MOTD (.+)
+            template_str = """Value MOTD (.+)
 Start
   ^banner motd \^C${MOTD}\^C -> Record
 """
-            fsm = textfsm.TextFSM(template.splitlines())
+            fsm = textfsm.TextFSM(io.StringIO(template_str))
             parsed = fsm.ParseText(output)
 
             if parsed:
