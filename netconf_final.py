@@ -35,7 +35,6 @@ def create(student_id, router_ip, roomIdToGetMessages, ACCESS_TOKEN):
             if '<ok/>' in xml_data:
                 sendtexttowebex.send_message_webex(roomIdToGetMessages, ACCESS_TOKEN, "Loopback created successfully by netconf")
     except Exception as e:
-        sendtexttowebex.send_message_webex(roomIdToGetMessages, ACCESS_TOKEN, f"Error: {e}")
 
 
 
